@@ -46,19 +46,19 @@
   };
 </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="本文总结了我在工作中的一般git开发提交代码流程，以及一些比较好用的git命令 分支开发来了一个新需求，一般基于develop分支，checkout一个feature branch，完成开发后，checkout到develop分支，然后merge到develop分支。以前我一直在develop分支开发，弊端就是，每次别人有个新改动，我要立马使用的时候，需要先提交本地未完成的代码，导致无效的提交。这">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://inoutw.github.io/2020/01/31/hello-world/index.html">
+<meta property="og:title" content="git常用工作流程">
+<meta property="og:url" content="http://inoutw.github.io/2020/02/23/my-git-flow/index.html">
 <meta property="og:site_name" content="Inout Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="本文总结了我在工作中的一般git开发提交代码流程，以及一些比较好用的git命令 分支开发来了一个新需求，一般基于develop分支，checkout一个feature branch，完成开发后，checkout到develop分支，然后merge到develop分支。以前我一直在develop分支开发，弊端就是，每次别人有个新改动，我要立马使用的时候，需要先提交本地未完成的代码，导致无效的提交。这">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-31T05:40:24.631Z">
-<meta property="article:modified_time" content="2020-01-31T05:40:24.631Z">
+<meta property="article:published_time" content="2020-02-23T12:01:09.892Z">
+<meta property="article:modified_time" content="2020-02-23T12:09:05.445Z">
 <meta property="article:author" content="inoutw">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://inoutw.github.io/2020/01/31/hello-world/">
+<link rel="canonical" href="http://inoutw.github.io/2020/02/23/my-git-flow/">
 
 
 <script id="page-configurations">
@@ -70,7 +70,7 @@
   };
 </script>
 
-  <title>Hello World | Inout Blog</title>
+  <title>git常用工作流程 | Inout Blog</title>
   
 
 
@@ -169,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://inoutw.github.io/2020/01/31/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://inoutw.github.io/2020/02/23/my-git-flow/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -182,7 +182,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          git常用工作流程
         </h1>
 
         <div class="post-meta">
@@ -191,8 +191,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-01-31 13:40:24" itemprop="dateCreated datePublished" datetime="2020-01-31T13:40:24+08:00">2020-01-31</time>
+              <time title="创建时间：2020-02-23 20:01:09 / 修改时间：20:09:05" itemprop="dateCreated datePublished" datetime="2020-02-23T20:01:09+08:00">2020-02-23</time>
             </span>
 
           
@@ -206,20 +207,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <p>本文总结了我在工作中的一般git开发提交代码流程，以及一些比较好用的git命令</p>
+<h3 id="分支开发"><a href="#分支开发" class="headerlink" title="分支开发"></a>分支开发</h3><p>来了一个新需求，一般基于develop分支，checkout一个feature branch，完成开发后，checkout到develop分支，然后merge到develop分支。以前我一直在develop分支开发，弊端就是，每次别人有个新改动，我要立马使用的时候，需要先提交本地未完成的代码，导致无效的提交。这个时候就可以先checkout到develop分支，拉取代码，然后查看代码效果。feature和develop就不会冲突</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout developp</span><br><span class="line">$ git checkout feature_branch</span><br><span class="line">$ <span class="comment">## some code work in feature branch</span></span><br><span class="line">$ git checkout develop</span><br><span class="line">$ git merge feature_branch</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h3><p>git add &amp; commit 之后拉取远程分支代码，有两种方法<br>1.直接git pull, 会自动创建一个merge的提交记录，会污染提交历史(merge requset的无效提交记录)<br>2.git fetch origin develop 然后 git rebase origin/develop, 这种方法是更新本地develop分支基于的节点（rebase我的理解是换成远程分支上最新的提交节点，合并提交记录，不会产生冗余commit），如果有冲突，就按照提示，解决冲突然后git rebase –continue；或者放弃rebase： git rebase –abort<br>所以我一般用的是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch origin develop</span><br><span class="line">$ git rebase origin/develop</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+<p>git push 之后就可以删除feature_branch了</p>
+<h3 id="回滚操作"><a href="#回滚操作" class="headerlink" title="回滚操作"></a>回滚操作</h3><p>以前只知道git reset –hard commit_hash_code, 最近发现这个命令暗藏玄机, hard会把工作区包括staged的内容清空，回到指定的commit节点。但我有时候并不想丢弃本地未提交的代码，怎么办呢？把hard 换成soft试试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --soft c56da67(git commit hase code)</span><br></pre></td></tr></table></figure>
+<p>这个命令会把本地代码回退到指定commit节点，然后把工作区的内容与该提交节点的差异内容放入暂存区，也就是执行了git add；感觉发现了新大陆（浅薄无知的我）</p>
+<h3 id="代码暂存"><a href="#代码暂存" class="headerlink" title="代码暂存"></a>代码暂存</h3><p>当需要中断当前分支，切换到其他分支，git会提示我们要提交，否则会丢失工作区内容，但我现在不想提交，这个时候就可以用</p>
+<pre><code>$ git stash //压栈
+$ git stash list //栈记录
+$ git stash clear // 清空
+$ git stash apply // 恢复暂存代码</code></pre>
     </div>
 
     
@@ -233,10 +236,13 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/02/01/js-new-feature/" rel="next" title="Js 新特性">
-      Js 新特性 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/02/23/build-github-pages/" rel="prev" title="Hexo搭建Github Pages">
+      <i class="fa fa-chevron-left"></i> Hexo搭建Github Pages
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/23/husky/" rel="next" title="husky">
+      husky <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -297,7 +303,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分支开发"><span class="nav-number">1.</span> <span class="nav-text">分支开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码提交"><span class="nav-number">2.</span> <span class="nav-text">代码提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回滚操作"><span class="nav-number">3.</span> <span class="nav-text">回滚操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码暂存"><span class="nav-number">4.</span> <span class="nav-text">代码暂存</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

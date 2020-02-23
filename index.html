@@ -167,7 +167,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://inoutw.github.io/2020/02/03/build-github-pages/">
+    <link itemprop="mainEntityOfPage" href="http://inoutw.github.io/2020/02/23/husky/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -181,7 +181,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/03/build-github-pages/" class="post-title-link" itemprop="url">Hexo搭建Github Pages</a>
+            <a href="/2020/02/23/husky/" class="post-title-link" itemprop="url">husky</a>
         </h1>
 
         <div class="post-meta">
@@ -192,7 +192,138 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-03 12:51:36 / 修改时间：18:21:23" itemprop="dateCreated datePublished" datetime="2020-02-03T12:51:36+08:00">2020-02-03</time>
+              <time title="创建时间：2020-02-23 20:01:09 / 修改时间：20:07:17" itemprop="dateCreated datePublished" datetime="2020-02-23T20:01:09+08:00">2020-02-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://inoutw.github.io/2020/02/23/my-git-flow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="inoutw">
+      <meta itemprop="description" content="inout blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Inout Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/23/my-git-flow/" class="post-title-link" itemprop="url">git常用工作流程</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-23 20:01:09 / 修改时间：20:09:05" itemprop="dateCreated datePublished" datetime="2020-02-23T20:01:09+08:00">2020-02-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文总结了我在工作中的一般git开发提交代码流程，以及一些比较好用的git命令</p>
+<h3 id="分支开发"><a href="#分支开发" class="headerlink" title="分支开发"></a>分支开发</h3><p>来了一个新需求，一般基于develop分支，checkout一个feature branch，完成开发后，checkout到develop分支，然后merge到develop分支。以前我一直在develop分支开发，弊端就是，每次别人有个新改动，我要立马使用的时候，需要先提交本地未完成的代码，导致无效的提交。这个时候就可以先checkout到develop分支，拉取代码，然后查看代码效果。feature和develop就不会冲突</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout developp</span><br><span class="line">$ git checkout feature_branch</span><br><span class="line">$ <span class="comment">## some code work in feature branch</span></span><br><span class="line">$ git checkout develop</span><br><span class="line">$ git merge feature_branch</span><br></pre></td></tr></table></figure>
+
+<h3 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h3><p>git add &amp; commit 之后拉取远程分支代码，有两种方法<br>1.直接git pull, 会自动创建一个merge的提交记录，会污染提交历史(merge requset的无效提交记录)<br>2.git fetch origin develop 然后 git rebase origin/develop, 这种方法是更新本地develop分支基于的节点（rebase我的理解是换成远程分支上最新的提交节点，合并提交记录，不会产生冗余commit），如果有冲突，就按照提示，解决冲突然后git rebase –continue；或者放弃rebase： git rebase –abort<br>所以我一般用的是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch origin develop</span><br><span class="line">$ git rebase origin/develop</span><br></pre></td></tr></table></figure>
+
+<p>git push 之后就可以删除feature_branch了</p>
+<h3 id="回滚操作"><a href="#回滚操作" class="headerlink" title="回滚操作"></a>回滚操作</h3><p>以前只知道git reset –hard commit_hash_code, 最近发现这个命令暗藏玄机, hard会把工作区包括staged的内容清空，回到指定的commit节点。但我有时候并不想丢弃本地未提交的代码，怎么办呢？把hard 换成soft试试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --soft c56da67(git commit hase code)</span><br></pre></td></tr></table></figure>
+<p>这个命令会把本地代码回退到指定commit节点，然后把工作区的内容与该提交节点的差异内容放入暂存区，也就是执行了git add；感觉发现了新大陆（浅薄无知的我）</p>
+<h3 id="代码暂存"><a href="#代码暂存" class="headerlink" title="代码暂存"></a>代码暂存</h3><p>当需要中断当前分支，切换到其他分支，git会提示我们要提交，否则会丢失工作区内容，但我现在不想提交，这个时候就可以用</p>
+<pre><code>$ git stash //压栈
+$ git stash list //栈记录
+$ git stash clear // 清空
+$ git stash apply // 恢复暂存代码</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://inoutw.github.io/2020/02/23/build-github-pages/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="inoutw">
+      <meta itemprop="description" content="inout blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Inout Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/23/build-github-pages/" class="post-title-link" itemprop="url">Hexo搭建Github Pages</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-23 20:01:09 / 修改时间：20:07:17" itemprop="dateCreated datePublished" datetime="2020-02-23T20:01:09+08:00">2020-02-23</time>
             </span>
 
           
@@ -208,12 +339,17 @@
       
           <p>之前按照github pages官方文档搭建了一个简易博客系统，发现没有可用的目录或者导航。偶然发现了一个博客框架，<a href="https://hexo.io/docs/" target="_blank" rel="noopener">hexo</a>，尝试了一下，还不错。</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p>按照文档安装依赖，init了一个初始系统后。运行hexo server，就可以在本地开启博客系统</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="配置next主题"><a href="#配置next主题" class="headerlink" title="配置next主题"></a>配置next主题</h3><p>默认主题是landscape，我本人比较喜欢<a href="https://theme-next.org/docs/getting-started/installation" target="_blank" rel="noopener">next主题</a></p>
-<h3 id="CI"><a href="#CI" class="headerlink" title="CI"></a>CI</h3><p>刚开始按照文档配置了travis CI，推送代码到远程master后自动生成gh-pages分支（最终的部署代码），然后需要在仓库settings里修改github pages的source分支为gh-pages，但是无法修改，<a href="ttps://stackoverflow.com/questions/39978856/unable-to-change-source-branch-in-github-pages">参考</a>。  </p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="配置next主题"><a href="#配置next主题" class="headerlink" title="配置next主题"></a>配置next主题</h3><p>默认主题是landscape，我本人比较喜欢<a href="https://theme-next.org/docs/getting-started/installation" target="_blank" rel="noopener">next主题</a><br>根据提示，下载next主题后在本地会看到本地themes下多了一个文件夹 next</p>
+<h3 id="CI"><a href="#CI" class="headerlink" title="CI"></a>CI</h3><p>刚开始按照文档配置了travis CI，推送代码到远程master后自动生成gh-pages分支（最终的部署代码），然后需要在仓库settings里修改github pages的source分支为gh-pages，但是github pages仓库setttings提示无法修改，<br><img src="/images/post/cannot-change-branch.png" alt="User pages must be built from the master branch."><br>也可以<a href="ttps://stackoverflow.com/questions/39978856/unable-to-change-source-branch-in-github-pages">参考</a>。  </p>
 <p>解决办法：运用本地部署，然后推送部署代码到远程master<a href="https://hexo.io/docs/one-command-deployment" target="_blank" rel="noopener">参考</a>  </p>
+<p>相应的_config.yml文件的改动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/xxx/xxx.github.io</span><br></pre></td></tr></table></figure>
+<p>然后运行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save  </span><br><span class="line">$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy.</span><br></pre></td></tr></table></figure>
 
 <p>现在就可以看到你的站点: <a href="https://xxx.github.io" target="_blank" rel="noopener">https://xxx.github.io</a> 啦</p>
+<p>后续如果有新的改动，我采用的方法是把完整代码保存在develop分支，然后切换到master分支,把代码merge到master，运行 </p>
+<p>$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy </p>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
@@ -458,7 +594,7 @@ c.#add(); //error`</code></pre><h3 id="可选链操作符："><a href="#可选�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
