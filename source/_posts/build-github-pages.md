@@ -1,6 +1,10 @@
 ---
 title: Hexo搭建Github Pages
+thumbnail: https://img.vim-cn.com/17/0c7b02722686d1527a1df807dae0794d995860.png
+icons: [fas fa-fire red, fas fa-star green]
+cover: true
 ---
+
 之前按照github pages官方文档搭建了一个简易博客系统，发现没有可用的目录或者导航。偶然发现了一个博客框架，[hexo](https://hexo.io/docs/)，尝试了一下，还不错。
 
 ## Quick Start  
@@ -14,7 +18,7 @@ title: Hexo搭建Github Pages
 
 ### CI
 
-刚开始按照文档配置了travis CI，推送代码到远程master后自动生成gh-pages分支（最终的部署代码），然后需要在仓库settings里修改github pages的source分支为gh-pages，但是无法修改，[参考](ttps://stackoverflow.com/questions/39978856/unable-to-change-source-branch-in-github-pages)。  
+刚开始按照文档配置了travis CI，推送代码到远程master后自动生成gh-pages分支（最终的部署代码），然后需要在仓库settings里修改github pages的source分支为gh-pages，但是无法修改，[参考](https://stackoverflow.com/questions/39978856/unable-to-change-source-branch-in-github-pages)。  
 
 解决办法：运用本地部署，然后推送部署代码到远程master[参考](https://hexo.io/docs/one-command-deployment)  
 
@@ -28,8 +32,8 @@ deploy:
 然后运行
 
 ``` bash
-$ npm install hexo-deployer-git --save  
-$ hexo clean && hexo g && hexo deploy.
+$ npm install hexo-deployer-git --save
+$ hexo clean && hexo g && hexo deploy
 
 ```
 

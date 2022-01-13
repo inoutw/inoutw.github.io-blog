@@ -4,7 +4,7 @@
 
 # Site
 title: Inout Blog
-subtitle: ''
+subtitle: '不畏将来，不恋过往'
 description: 'inout blog'
 keywords:
 author: inoutw
@@ -93,7 +93,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: volantis
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
